@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 10.11.13
+  Time: 21:52
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <p:panel style="background-color: #F3CD52; border-width: 0px">
+        <p><h:outputText style="color:brown" value="#{msg.cinemaHallLabel1} "/><h:outputText value="#{msg.cinemaHallLabel2}"/></p>
+    </p:panel>
+    <c:forEach items="#{othersBean.listOfCinemahalls}" var="cinema">
+           <p:panel style="width: 140%;
+                    border-color: orange;
+                    background-color: #F3CD52;
+                    position: relative;
+                    right: 150px">
+           <h2><h:outputText style="color:brown" value="Кинозал № #{cinema.cinemaHallID}"/></h2>
+           <p><h:outputText value="Кинозал № #{cinema.cinemaHallID} рассчитан на #{cinema.countOfPlacesInHall} мест."/></p>
+            <c:forEach var="i" begin="1" end="#{cinema.countOfRows}">
+                <p>
+                    <h:outputText value="Ряд #{i} "/>
+                    <c:forEach var="j" begin="1" end="#{cinema.countOfPlacesInHall/cinema.countOfRows}">
+                        <h:commandButton styleClass="button-small" style="background-color: #67128F" value="#{j}" />
+                    </c:forEach>
+                </p>
+            </c:forEach>
+           </p:panel>
+           <br/>
+           <br/>
+           <br/>
+           <br/>
+        </c:forEach>
+</h:body>
+
+</html>

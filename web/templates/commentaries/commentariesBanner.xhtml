@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Artyom
+  Date: 07.04.14
+  Time: 19:47
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans'
+          rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css"
+          media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css"
+          media="all" />
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <p:panel style="background-color: #F3CD52; border-color: orange; align-content: center">
+            <h3>Комментарии к фильму - <h:outputText value="#{filmsBean.currentFilm.title}"/></h3>
+            <br/>
+            <h:form>
+                <h:dataTable value="#{commentariesBean.listOfCommentaries}" var="comment" border="1"
+                    styleClass="vacation-table" rowClasses="vacation-row2">
+                    <h:column>
+                        <p><h:outputText value="#{comment.commentary}"/></p>
+                        <p><h:outputText value="#{comment.account.login}"/></p>
+                        <ui:fragment rendered="#{commentariesBean.checkCommentOnAccount(comment)}">
+                            <h:commandButton value="Удалить" action="#{commentariesBean.deleteCommentary(comment)}"
+                                             styleClass="input-reg"/>
+                        </ui:fragment>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <br/>
+            <br/>
+            <h3>Оставить комментарий</h3>
+            <h:form>
+                <h:panelGrid columns="3" id="textPanel" style="font-size: 22px;" cellspacing="10px">
+                    <h:outputText value="" styleClass="label-reg"/>
+                    <p:inputTextarea id="comment" value="#{commentariesBean.comment}" styleClass="input-reg" cols="73" rows="5" />
+                    <p:message for="comment" styleClass="error-reg"/>
+                </h:panelGrid>
+                <br/>
+                <br/>
+                <h:commandButton value="Добавить" styleClass="button-reg" action="#{commentariesBean.addCommentary()}"/>
+            </h:form>
+        </p:panel>
+        <br/>
+        <h:form>
+            <p><h:commandLink style="color:purple;text-align:center" value="#{msg.sessionLabel3}" action="schedule"/></p>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>

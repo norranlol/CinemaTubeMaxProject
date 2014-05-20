@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 10.11.13
+  Time: 21:27
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <h:form>
+            <ul>
+                <li><a jsfc="h:commandLink" action="schedule" accesskey="1" value="Расписание кинотеатра"/></li>
+                <li class="current_page_item"><a jsfc="h:commandLink" action="vacation" accesskey="2" value="Вакансии кинотеатра"/></li>
+                <li><a jsfc="h:commandLink" action="cinemaHalls" accesskey="3" value="Наши кинозалы"/></li>
+                <li><a jsfc="h:commandLink" action="/about.xhtml" accesskey="4" value="О кинотеатре"/></li>
+                <li><a jsfc="h:commandLink" action="/discounts.xhtml" accesskey="5" value="Акции и скидки"/></li>
+            </ul>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>

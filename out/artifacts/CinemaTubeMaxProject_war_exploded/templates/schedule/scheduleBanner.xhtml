@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 10.11.13
+  Time: 20:34
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:interf="http://java.sun.com/jsf/composite/interfaces"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href='http://fonts.googleapis.com/css?family=Pontano+Sans'
+		rel='stylesheet' type='text/css' />
+	<link href="styles/css/default.css" rel="stylesheet" type="text/css"
+		media="all" />
+	<link href="styles/css/fonts.css" rel="stylesheet" type="text/css"
+		media="all" />
+</h:head>
+<h:body>
+	<ui:composition>
+		<h2>Расписание кинотеатра</h2>
+		<br />
+		<c:set var="listSize" value="#{filmsBean.filmsList.size()}" />
+		<h:form>
+			<ui:repeat var="film" value="#{filmsBean.filmsList}" begin="0"
+				end="#{listSize}">
+                <p:panel style="border-color: orange;
+                                background-color: #F3CD52;">
+                    <interf:UIFilmData title="#{film.title}" image="#{film.image}"
+                        genre="#{film.genre}" director="#{film.director}"
+                        country="#{film.country}" description="#{film.description}"
+                        duration="#{film.duration}" />
+                    <p:commandLink style="color:purple"
+                        action="#{filmsBean.goToSessionsPage(film)}"
+                        value="Перейти на страницу просмотра сеансов" />
+                    <br/>
+                    <br/>
+                    <ui:fragment rendered="#{registerAndAuthorizationBean.accountOnline!=null}">
+                        <p:commandLink style="color: purple"
+                            action="#{filmsBean.goToCommentariesPage(film)}"
+                            value="Посмотреть комментарии к фильму"/>
+                    </ui:fragment>
+                </p:panel>
+				<br />
+				<br />
+				<br />
+			</ui:repeat>
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 10.11.13
+  Time: 21:41
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <p:panel style="background-color: #F3CD52; border-width: 0px">
+        <p><h:outputText value="#{msg.discountsLabel1}"/></p>
+        <p><h:outputText value="#{msg.discountsLabel2}"/></p>
+        <h:graphicImage library="images" name="popcorn.jpg"/>
+        <p><h:outputText value="#{msg.discountsLabel3}"/></p>
+        <p><h:outputText style="color:brown" value="#{msg.discountsLabel4}"/></p>
+        <p><h:outputText value="#{msg.discountsLabel5}"/></p>
+        <ul>
+            <li><p><h:outputText value="#{msg.discountsLabel6} "/><h:outputText style="color:brown" value="#{msg.discountsLabel7}"/></p></li>
+            <li><p><h:outputText value="#{msg.discountsLabel8} "/><h:outputText style="color:brown" value="#{msg.discountsLabel9}"/></p></li>
+        </ul>
+        <p><h:outputText value="#{msg.discountsLabel10}"/></p>
+        <p><h:outputText value="#{msg.discountsLabel11}"/></p>
+    </p:panel>
+</h:body>
+
+</html>

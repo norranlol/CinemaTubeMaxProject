@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 24.11.13
+  Time: 16:53
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <p><h:outputText value="#{reserveBean.noticeOverful}" style="color: red"/> </p>
+        <br/>
+        <h:form>
+            <p:panel style="background-color: #F3CD52; border-color: orange">
+                <f:validateBean>
+                    <h:panelGrid columns="3" id="textPanel" style="font-size:22px;position: relative;left: 180px" cellspacing="10px" >
+                        <p:outputLabel value="Ряд:" styleClass="label-reg" style="color: brown"/>
+                        <p:outputLabel value="#{reserveBean.row}" styleClass="label-reg" style="color: indigo"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="Место:" styleClass="label-reg" style="color: brown"/>
+                        <p:outputLabel value="#{reserveBean.place}" styleClass="label-reg" style="color: indigo"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="       " styleClass="label-reg"/>
+                        <p:outputLabel value="#{msg.reserveLabel1}" styleClass="label-reg" style="color: indigo"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="#{msg.registerLabel4}: " styleClass="label-reg"/>
+                        <p:inputText id="surname" value="#{reserveBean.surname}" styleClass="input-reg"/>
+                        <h:message for="surname" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel5}: " styleClass="label-reg"/>
+                        <p:inputText id="name" value="#{reserveBean.name}" styleClass="input-reg"/>
+                        <h:message for="name" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel6}:" styleClass="label-reg"/>
+                        <p:inputText id="patronymic" value="#{reserveBean.patronymic}" styleClass="input-reg"/>
+                        <h:message for="patronymic" styleClass="error-reg"/>
+                        <br/>
+                        <br/>
+                        <ui:fragment rendered="#{reserveBean.payBonusScores==false}">
+                            <h:commandButton value="#{msg.reserveLabel2}" styleClass="button-reg" action="#{reserveBean.makeReserveTicket()}"/>
+                        </ui:fragment>
+                    </h:panelGrid>
+                </f:validateBean>
+            </p:panel>
+        </h:form>
+        <h:form>
+            <ui:fragment rendered="#{registerAndAuthorizationBean.accountOnline!=null}">
+                    <h:panelGrid columns="3"  id="textPanel2" style="font-size:22px;" cellspacing="10px">
+                        <h:outputText value="Оплатить бонусными баллами" styleClass="input-reg"/>
+                        <h:selectBooleanCheckbox value="#{reserveBean.payBonusScores}"/>
+                        <h:commandButton value="Обновить" action="#{reserveBean.updatePage()}" styleClass="button-reg"/>
+                    </h:panelGrid>
+                <p:panel style="background-color: #F3CD52; border-color: orange">
+                    <ui:fragment rendered="#{reserveBean.payBonusScores==true}">
+                        <p><h:outputText value="#{reserveBean.bonusNotice}" style="color: red"/></p>
+                        <h:panelGrid columns="2" id="textPanel3" style="font-size:22px;" cellspacing="10px">
+                            <p:outputLabel value="Количество бонусных баллов:" styleClass="label-reg"/>
+                            <p:inputText value="#{reserveBean.countBonusScores}" styleClass="input-reg"/>
+                            <p:outputLabel value="Итоговая цена билета:" styleClass="label-reg"/>
+                            <ui:fragment rendered="#{reserveBean.finalPrice != -1}">
+                                <p:outputLabel value="#{reserveBean.finalPrice}" styleClass="label-reg"/>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{reserveBean.finalPrice == -1}">
+                                <p:outputLabel value="0" styleClass="label-reg"/>
+                            </ui:fragment>
+                        </h:panelGrid>
+                        <h:panelGrid columns="1" style="position: relative;left: 200px">
+                            <h:commandButton value="Рассчитать" action="#{reserveBean.calculateFinalPrice}"
+                                             styleClass="button-reg"/>
+                            <br/>
+                            <h:commandButton value="Забронировать" action="#{reserveBean.makeReserveTicketWithBonuses}"
+                                             styleClass="button-reg"/>
+                        </h:panelGrid>
+                    </ui:fragment>
+                </p:panel>
+            </ui:fragment>
+        </h:form>
+        <br/>
+        <h:form>
+            <h:commandLink value="Вернуться на страницу просмотра мест" action="#{concretSessionBean.showBusyPlaces
+                (filmsBean.currentFilm, concretSessionBean.currentSession)}" style="color: purple"/>
+        </h:form>
+    </ui:composition>
+</h:body>
+
+</html>

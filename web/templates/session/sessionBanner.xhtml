@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 10.11.13
+  Time: 23:35
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:interf="http://java.sun.com/jsf/composite/interfaces"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css'/>
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all"/>
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <p:panel style="border-color: orange;
+                                background-color: #F3CD52;">
+            <interf:UIFilmData
+                title="#{filmsBean.currentFilm.title}"
+                image="#{filmsBean.currentFilm.image}"
+                genre="#{filmsBean.currentFilm.genre}"
+                director="#{filmsBean.currentFilm.director}"
+                country="#{filmsBean.currentFilm.country}"
+                description="#{filmsBean.currentFilm.description}"
+                duration="#{filmsBean.currentFilm.duration}"
+            />
+        </p:panel>
+        <br/>
+        <p:panel style="border-color: orange;
+                 background-color: #F3CD52;">
+        <p><h:outputText value="#{msg.sessionLabel1}"/></p>
+        <ui:repeat value="#{filmsBean.findSessionList}" var="sessionObj">
+            <interf:UISessionData
+                dateOfStart="#{filmsBean.sdf.format(sessionObj.dateOfSession)}"
+                startTime="#{sessionObj.timeOfStart}"
+                price="#{sessionObj.price}"
+                labelOfLink="#{msg.sessionLabel2}"/>
+                <h:form>
+                    <p align="left"><h:commandLink style="color:purple" value="#{msg.sessionLabel2}"
+                                      action="#{concretSessionBean.showBusyPlaces(filmsBean.currentFilm,sessionObj)}"/></p>
+                </h:form>
+        </ui:repeat>
+        </p:panel>
+        <br/>
+        <h:form>
+            <p><p:commandLink style="color:purple" value="#{msg.sessionLabel3}" action="schedule"/></p>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>

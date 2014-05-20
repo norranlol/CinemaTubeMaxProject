@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/login.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round" />
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <h:form>
+            <ui:fragment rendered="#{registerAndAuthorizationBean.accountOnline == null}">
+                <p:panel style="width: 26%;border-color: orange;
+                                background-color: #F3CD52;
+                                align-content: center;
+                                position: relative; left: 800px">
+                    <h:panelGrid columns="2" columnClasses="vacation-row" style="background-color: orange">
+                        <h:outputText value="Логин:"/>
+                        <h:inputText value="#{registerAndAuthorizationBean.login}"/>
+                        <h:outputText value="Пароль:"/>
+                        <h:inputSecret value="#{registerAndAuthorizationBean.password}"/>
+                    </h:panelGrid>
+                    <br/>
+                    <h:commandButton value="Авторизоваться" styleClass="button-reg"
+                                     style="background-color: orange"
+                                     action="#{registerAndAuthorizationBean.authorize()}"/>
+                    <br/>
+                </p:panel>
+            </ui:fragment>
+            <ui:fragment rendered="#{registerAndAuthorizationBean.accountOnline != null}">
+                <p:panel style="width: 26%;border-color: orange;
+                                background-color: #F3CD52;
+                                align-content: center;
+                                position: relative; left: 800px">
+                    <p align="center">
+                    <p:outputLabel value="Добро пожаловать,#{registerAndAuthorizationBean.accountOnline.login}" style="color: brown"/>
+                    <h:commandLink value="Бонусный счёт" action="history" style="color: purple"/>
+                    <br/>
+                    <h:commandLink value="Выйти" action="#{registerAndAuthorizationBean.logout()}" style="color: purple"/>
+                    </p>
+                </p:panel>
+            </ui:fragment>
+            <ui:fragment rendered="#{registerAndAuthorizationBean.accountOnline == null}">
+                <br/>
+                <h:link value="Зарегистрироваться" outcome="register" style="color: purple; position: relative;left: 350px"/>
+            </ui:fragment>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>

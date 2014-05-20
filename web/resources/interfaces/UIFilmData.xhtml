@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 21.11.13
+  Time: 0:14
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</h:head>
+
+<h:body>
+    <composite:interface>
+        <composite:attribute name="title"/>
+        <composite:attribute name="image"/>
+        <composite:attribute name="genre"/>
+        <composite:attribute name="director"/>
+        <composite:attribute name="country"/>
+        <composite:attribute name="description"/>
+        <composite:attribute name="duration"/>
+    </composite:interface>
+
+    <composite:implementation>
+        <p><h:outputText style="color:brown" value="#{msg.filmTitleLabel} "/><h:outputText value="#{cc.attrs.title}" /></p>
+        <h:graphicImage library="images" name="#{cc.attrs.image}.jpg"/>
+        <p><h:outputText style="color:brown" value="#{msg.filmJanreLabel} "/><h:outputText value="#{cc.attrs.genre}"/></p>
+        <p><h:outputText style="color:brown" value="#{msg.filmDirectorLabel} "/><h:outputText value="#{cc.attrs.director}"/></p>
+        <p><h:outputText style="color:brown" value="#{msg.filmCountryLabel} "/><h:outputText value="#{cc.attrs.country}"/></p>
+        <p><h:outputText style="color:brown" value="#{msg.filmDescriptionLabel} "/><h:outputText value="#{cc.attrs.description}"/></p>
+        <p><h:outputText style="color:brown" value="#{msg.filmDurationLabel} "/><h:outputText value="#{cc.attrs.duration} минут(ы)"/></p>
+    </composite:implementation>
+
+</h:body>
+
+
+</html>

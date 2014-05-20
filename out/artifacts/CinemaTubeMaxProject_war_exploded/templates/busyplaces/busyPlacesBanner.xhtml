@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 10.11.13
+  Time: 23:51
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <p:panel style="width: 55%;border-color: orange;
+                 background-color: #F3CD52;
+                 align-content: center;
+                 position: relative; left: 180px">
+        <h:panelGrid columns="2" id="textPanel" cellspacing="10px">
+            <h:outputText value="#{msg.busyLabel4}" styleClass="label-reg"/>
+            <h:outputText value="#{concretSessionBean.filmsBean.currentFilm.title}" styleClass="label-reg" style="color:indigo"/>
+            <h:outputText value="#{msg.busyLabel5}" styleClass="label-reg"/>
+            <h:outputText value="#{filmsBean.sdf.format(concretSessionBean.currentSession.dateOfSession)}" styleClass="label-reg" style="color:indigo"/>
+            <h:outputText value="#{msg.busyLabel52}" styleClass="label-reg"/>
+            <h:outputText value="#{concretSessionBean.currentSession.timeOfStart}" styleClass="label-reg" style="color:indigo"/>
+            <h:outputText value="#{msg.busyLabel6}" styleClass="label-reg"/>
+            <h:outputText value="#{concretSessionBean.currentSession.price}" styleClass="label-reg" style="color:indigo"/>
+            <h:outputText value="#{msg.busyLabel7}" styleClass="label-reg"/>
+            <h:outputText value="#{concretSessionBean.currentSession.cinemahall.cinemaHallID}" styleClass="label-reg"
+                          style="color:indigo"/>
+        </h:panelGrid>
+    </p:panel>
+    <br/>
+    <br/>
+    <p:outputLabel value="#{reserveBean.noticeForReserve}" styleClass="label-reg" style="color: purple"/>
+    <br/>
+    <br/>
+    <h:form>
+        <p:panel style="width: 140%;
+                    border-color: orange;
+                    background-color: #F3CD52;
+                    position: relative;
+                    right: 150px">
+        <ui:repeat value="#{concretSessionBean.busyPlaces}" var="busyPlace" offset="1" varStatus="status">
+            <p>
+                <h:outputText value="Ряд #{status.index}"/>
+                <ui:repeat value="#{busyPlace}" var="busy" offset="1">
+                    <ui:fragment rendered='#{busy=="З"}'>
+                        <h:commandButton styleClass="button-small" style="background-color: red" value="#{busy}"/>
+                    </ui:fragment>
+                    <ui:fragment rendered='#{busy=="Б"}'>
+                        <h:commandButton styleClass="button-small" style="background-color: #228b22" value="#{busy}"/>
+                    </ui:fragment>
+                    <ui:fragment rendered='#{!(busy=="З") and !(busy=="Б")}'>
+                        <h:commandButton styleClass="button-small" style="background-color: #67128F;" value="#{busy}" action="#{reserveBean.reserveTicket(status.index,busy)}"/>
+                    </ui:fragment>
+                </ui:repeat>
+            </p>
+        </ui:repeat>
+        </p:panel>
+    </h:form>
+    <br/>
+    <br/>
+    <p:panel style="width: 140%;border-color: orange;
+                 background-color: #F3CD52;
+                 position: relative; right: 150px">
+        <h:panelGrid columns="2" id="textPanel2" cellspacing="5px" style="position: relative;left: 80px">
+            <h:commandButton styleClass="button-small" value="№" style="background-color: #67128F"/>
+            <h:outputText styleClass="label-reg" value=" - #{msg.busyLabel1}" style="color: indigo"/>
+            <h:commandButton styleClass="button-small" style="background-color: #228b22" value="Б"/>
+            <h:outputText styleClass="label-reg" value=" - #{msg.busyLabel2}" style="color: indigo"/>
+            <h:commandButton styleClass="button-small" value="З" style="background-color: red"/>
+            <h:outputText styleClass="label-reg" value=" - #{msg.busyLabel3}" style="color: indigo"/>
+        </h:panelGrid>
+    </p:panel>
+    <br/>
+    <br/>
+    <h:form>
+         <p><p:commandLink style="color: purple" action="#{filmsBean.goToSessionsPage(filmsBean.currentFilm)}"
+                           value="Вернуться на страницу просмотра сеансов"/></p>
+    </h:form>
+</h:body>
+</html>

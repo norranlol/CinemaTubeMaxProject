@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Artyom
+  Date: 07.04.14
+  Time: 23:17
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <p:panel style="background-color: #F3CD52; border-color: orange">
+            <p><h:outputText value="Количество бонусных баллов - #{historyBean.bonusscore.countOfScores}"/></p>
+            <p><h:outputText value="История операций:"/></p>
+            <h:dataTable value="#{historyBean.listOfOperations}" var="operation" border="1"
+                         headerClass="vacation-row"
+                         styleClass="vacation-table"
+                         rowClasses="vacation-row">
+                <h:column>
+                    <f:facet name="header"><p style="color: brown">Операция</p></f:facet>
+                    <p>#{operation.operation}</p>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><p style="color: brown">Сумма</p></f:facet>
+                    <p>#{operation.sum}</p>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><p style="color: brown">Дата</p></f:facet>
+                    <p><h:outputText value="#{operation.date.date}.#{operation.date.month}.#{operation.date.year + 1900}"/></p>
+                </h:column>
+            </h:dataTable>
+        </p:panel>
+    </ui:composition>
+</h:body>
+</html>
+

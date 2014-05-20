@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 11.11.13
+  Time: 0:18
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css' />
+    <link href="styles/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="styles/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+    <ui:composition>
+        <h:form>
+            <f:validateBean>
+                <f:event type="postValidate" listener="#{registerAndAuthorizationBean.validatePassword}"/>
+                <f:event type="postValidate" listener="#{registerAndAuthorizationBean.validateNoExistingOfLogin}"/>
+                <p:panel style="background-color:#F3CD52; border-color: orange">
+                    <h:panelGrid columns="3" id="textPanel" style="position: relative;left: 150px">
+                        <p:outputLabel value="#{msg.registerLabel1}" styleClass="label-reg"/>
+                        <p:inputText id="login" value="#{registerAndAuthorizationBean.login}" styleClass="input-reg"/>
+                        <p:message for="login" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel2}" styleClass="label-reg"/>
+                        <p:password id="password" value="#{registerAndAuthorizationBean.password}" styleClass="input-reg"/>
+                        <p:message for="password" styleClass="error-reg" />
+                        <p:outputLabel value="#{msg.registerLabel3}" styleClass="label-reg"/>
+                        <p:password id="repeatPassword" value="#{registerAndAuthorizationBean.passwordRepeat}" styleClass="input-reg"/>
+                        <p:message for="repeatPassword" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel9}" styleClass="label-reg"/>
+                        <p:inputText id="secretQuestion" value="#{registerAndAuthorizationBean.secretQuestion}" styleClass="input-reg"/>
+                        <p:message for="secretQuestion" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel10}" styleClass="label-reg"/>
+                        <p:inputText id="secretAnswer" value="#{registerAndAuthorizationBean.secretAnswer}" styleClass="input-reg"/>
+                        <p:message for="secretAnswer" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel4}" styleClass="label-reg"/>
+                        <p:inputText id="surname" value="#{registerAndAuthorizationBean.surname}" styleClass="input-reg"/>
+                        <p:message for="surname" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel5}" styleClass="label-reg"/>
+                        <p:inputText id="name" value="#{registerAndAuthorizationBean.name}" styleClass="input-reg"/>
+                        <p:message for="name" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel6}" styleClass="label-reg"/>
+                        <p:inputText id="patronymic" value="#{registerAndAuthorizationBean.patronymic}" styleClass="input-reg"/>
+                        <p:message for="patronymic" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel7}" styleClass="label-reg"/>
+                        <p:inputText id="birthDate" value="#{registerAndAuthorizationBean.dateOfBirth}" styleClass="input-reg" converterMessage="Дата рождения должна иметь формат День-Месяц-Год">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </p:inputText>
+                        <p:message for="birthDate" styleClass="error-reg"/>
+                        <p:outputLabel value="#{msg.registerLabel11}" styleClass="label-reg"/>
+                        <p:inputText id="phoneNumber" value="#{registerAndAuthorizationBean.phoneNumber}" styleClass="input-reg"/>
+                        <p:message for="phoneNumber" styleClass="error-reg"/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <h:commandButton value="#{msg.registerLabel8}" styleClass="button-reg" action="#{registerAndAuthorizationBean.register()}"/>
+                    </h:panelGrid>
+                </p:panel>
+            </f:validateBean>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>

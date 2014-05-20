@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Позитроника
+  Date: 22.11.13
+  Time: 22:59
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</h:head>
+
+<h:body>
+    <composite:interface>
+        <composite:attribute name="dateOfStart"/>
+        <composite:attribute name="startTime"/>
+        <composite:attribute name="price"/>
+        <composite:attribute name="labelOfLink"/>
+    </composite:interface>
+
+    <composite:implementation>
+        <h3 align="left">
+            <h:outputText style="color:brown" value="#{cc.attrs.dateOfStart} - "/>
+            <h:outputText style="color:brown" value="#{cc.attrs.startTime} - "/>
+            <h:outputText style="color:indigo" value="#{cc.attrs.price}  "/>
+        </h3>
+    </composite:implementation>
+</h:body>
+
+</html>
